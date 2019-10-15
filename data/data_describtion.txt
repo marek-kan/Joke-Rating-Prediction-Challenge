@@ -1,0 +1,15 @@
+1.) Train link has ‘train.csv’ and ‘jokes.csv’
+  a) The train.csv file contains the user id, joke id and the rating
+    id - Unique id
+    user_id - ID for a user
+    joke_id - ID for a joke
+    Rating - Rating given by a user to a joke
+    
+  b) The jokes.csv contains the joke text
+    joke_id - ID for a joke
+    joke_text - Complete text for a joke
+    
+2.) Test link has ‘test.csv’
+  id - Unique ID
+  user_id - ID for a user
+  joke_id - ID for a joke
