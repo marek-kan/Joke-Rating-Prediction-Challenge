@@ -9,17 +9,21 @@ The dataset contains anonymous ratings(-10 to 10) provided by a total of 41,000 
 My first try has been based on NLP algorithm "Bag of Words". Combined with some synthetic features (like std_user/std_joke, ...) which have had high correlation with the ratings. These steps have resulted into very large dataset. I have had used Google colab to be able to feed these data to XGBoost model with gradient boosted trees. At the end this model performed poorly (RMSE ~ 5.8). 
 (At this time I havn't been familiar with collaboration filtering algorithm).
 
-To adress rating prediction I've used Collaborative Filtering algorithm which I have learned from Week 9, Machine Learning course at Coursera taught by Andrew Ng (https://www.coursera.org/learn/machine-learning). When this model hasn't been optimalized, I've used XGBoost model to correct systematic errors. Then I optimalized the collab_model params and found out that XGBoost is no longer able to correct errors in the predictions.
+To address rating prediction I've used Collaborative Filtering algorithm which I have learned from Week 9, Machine Learning course at Coursera taught by Andrew Ng (https://www.coursera.org/learn/machine-learning). When this model hasn't been optimalized, I've used XGBoost model to correct systematic errors. Then I optimalized the collab_model params and found out that XGBoost is no longer able to correct errors in the predictions.
 
 # Project description
 Folder "data" contains data.rar file where all data sources are.
 data_describtion.txt contains information about data.
 
 utils.py:
-  gen_Y(train_data) - will generate Y and R (matrix which users rated which jokes) matrixes
+  gen_Y(train_data) - will generate Y and R (matrix which users rated which jokes) matrices.
+  
   mean_norm(Y) - returns Y_normalized, u (matrix of joke means); has been used in some testing to get better results; not used in final                  solution.
-  init_par(n_users, n_jokes, n_features) - initialize feature (X) and coef (Theta) matrixes
-  cost(X, Theta, y, lam, R) - calculate current cost
+  
+  init_par(n_users, n_jokes, n_features) - initialize feature (X) and coef (Theta) matrices.
+  
+  cost(X, Theta, y, lam, R) - calculate current cost.
+  
   grad(X, Theta, Y, lamb, R) - calculate gradients for X and Theta
 
 collab_model.py:
