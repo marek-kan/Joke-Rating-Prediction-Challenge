@@ -38,9 +38,9 @@ def init_par(n_users, n_jokes, n_features):
     return X, Theta
 
 def cost(X, Theta, y, lam, R):
-    c = 0.5* np.sum(np.power((np.dot(X, Theta.T) - y) * R, 2))
-    reg_x = lam/2 * np.sum(np.power(X,2))
-    reg_theta = lam/2 * np.sum(np.power(Theta,2))
+    c = 0.5* np.sum(((np.dot(X, Theta.T) - y) * R)**2)
+    reg_x = lam/2 * np.sum(X**2)
+    reg_theta = lam/2 * np.sum(Theta**2)
     return c + reg_x + reg_theta
 
 
