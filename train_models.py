@@ -8,6 +8,7 @@ Created on Sat Oct  5 19:35:47 2019
 from collab_model import collab_model
 import pandas as pd
 import numpy as np
+import pickle
 
 y = np.load('Y.npy')
 R = np.load('R.npy')
@@ -35,3 +36,8 @@ data.loc[data.pred_collab<-10] = -10
 data['diff'] = data.Rating - data.pred_collab
 
 print('Mean absolute err (y_true - y_pred) is: ' + str(abs(data['diff']).mean()))
+
+filename = 'collab_model_{}'.format(int(collab.cost))
+print('Saving model {}'.format(filename))
+pickle.dump(collab, open(filename, 'wb'))
+
