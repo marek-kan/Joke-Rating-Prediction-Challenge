@@ -22,9 +22,6 @@ class collab_model():
         n_users = Y.shape[1]
         X, Theta = utils.init_par(n_users, n_jokes, self.n_features)
         
-#        u, Y = utils.mean_norm(Y)
-#        self.u = u
-        
         for i in range(self.n_iter):
             J = utils.cost(X, Theta, Y, self.lamb, R)
             X_grad, Theta_grad = utils.grad(X, Theta, Y, self.lamb, R)
