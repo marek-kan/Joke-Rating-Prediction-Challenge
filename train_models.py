@@ -13,7 +13,7 @@ y = np.load('Y.npy')
 R = np.load('R.npy')
 train = pd.read_csv(r'data/train.csv')
 
-collab = collab_model(learning_rate=0.0003, lamb=0, n_iter=350, n_features=500)
+collab = collab_model(learning_rate=0.0003, lamb=1e-6, n_iter=350, n_features=575)
 collab.fit(y, R)
 
 predictions=[]
