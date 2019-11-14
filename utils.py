@@ -32,8 +32,9 @@ def mean_norm(Y):
     return u, Y_norm
 
 def init_par(n_users, n_jokes, n_features):
-    X = np.random.randn(n_jokes, n_features)*0.01
-    Theta = np.random.randn(n_users, n_features)*0.01
+    e = 0.1
+    X = np.random.uniform(e,-e,size=(n_jokes, n_features))
+    Theta = np.random.uniform(e,-e,size=(n_users, n_features))
     
     return X, Theta
 
@@ -44,31 +45,32 @@ def cost(X, Theta, y, lam, R):
     return c + reg_x + reg_theta
 
 
-def grad(X, Theta, Y, lamb, R):
+def sgd(X, Theta, Y, lamb, R, init_learning_rate=0.01, max_iter=10):
     n_users = np.shape(Theta)[0]
     n_jokes = np.shape(X)[0]
 
-    X_grad = np.zeros(X.shape)
     Theta_grad = np.zeros(Theta.shape)
     
-    #fights large RAM use, to do this at onece you need 10GB+
+    #fights large RAM useage, to do this at onece you need 10GB+
     for i in range(n_jokes):
         idx = np.where(R[i,:] == 1)
         Theta_temp = Theta[idx]
         Y_temp = Y[i, idx]
-        
-        X_grad[i] = np.dot(np.dot(X[i, :], Theta_temp.T) - Y_temp, Theta_temp) + lamb*X[i]
-    
+        # Its faster to fit one example better in fewer total learning loops
+        for k in range(max_iter): 
+            X_grad = np.dot(np.dot(X[i, :], Theta_temp.T) - Y_temp, Theta_temp) + lamb*X[i]
+            X[i,:] = X[i,:] - (learning_rate*X_grad)
 
     for j in range(n_users):
         idx = np.where(R[:,j] == 1)
         X_temp = X[idx]
         Y_temp = Y[idx, j]
-        
-        Theta_grad[j] = np.dot(np.dot(X_temp, Theta[j, :].T) - Y_temp, X_temp) + lamb*Theta[j]
-
-    return X_grad, Theta_grad
-
+        # Its faster to fit one example better in fewer total learning loops
+        for k in range(max_iter):
+            Theta_grad = np.dot(np.dot(X_temp, Theta[j, :].T) - Y_temp, X_temp) + lamb*Theta[j]
+            Theta[j,:] = Theta[j,:] - learning_rate*Theta_grad
+    return X, Theta
+    
 #if __name__ == "__main__":
 #    import pandas as pd
 #    
