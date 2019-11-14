@@ -16,26 +16,26 @@ To address rating prediction I've used Collaborative Filtering algorithm which I
 Folder "data" contains data.rar file where all data sources are.
 data_describtion.txt contains information about data.
 
-utils.py:
+* utils.py:
 
-  gen_Y(train_data) - will generate Y and R (matrix which users rated which jokes) matrices.
+  * gen_Y(train_data) - will generate Y and R (matrix which users rated which jokes) matrices.
   
-  mean_norm(Y) - returns Y_normalized, u (matrix of joke means); has been used in some testing to get better results; not used in final                  solution.
+  * mean_norm(Y) - returns Y_normalized, u (matrix of joke means); has been used in some testing to get better results; not used in final                  solution.
   
-  init_par(n_users, n_jokes, n_features) - initialize feature (X) and coef (Theta) matrices.
+  * init_par(n_users, n_jokes, n_features) - initialize feature (X) and coef (Theta) matrices.
   
-  cost(X, Theta, y, lam, R) - calculate current cost.
+  * cost(X, Theta, y, lam, R) - calculate current cost.
   
-  grad(X, Theta, Y, lamb, R) - calculate gradients for X and Theta
+  * sgd(X, Theta, Y, lamb, R) - calculate gradients for X and Theta
 
-collab_model.py:
+* collab_model.py:
   contains collab_model class
   
-train_models.py:
+* train_models.py:
   will train collab model and make predictions on training set. Then will print mean absolute error on training set.
 
-grid_search_collab.py:
+* grid_search_collab.py:
   feature which will perform simple grid search with defined params and store results.
 
-grid_search_corr.py:
+* grid_search_corr.py:
   has been used to find optimal params for correction (XGB) model.
