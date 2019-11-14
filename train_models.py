@@ -14,8 +14,8 @@ y = np.load('Y.npy')
 R = np.load('R.npy')
 train = pd.read_csv(r'data/train.csv')
 
-collab = collab_model(learning_rate=0.0003, lamb=1e-6, n_iter=350, n_features=575)
-collab.fit(y, R)
+collab = collab_model(learning_rate=0, lamb=1e-6, n_iter=350, n_features=2000)
+collab.fit_sgd(y, R)
 
 predictions=[]
 for i in range(len(train)):
