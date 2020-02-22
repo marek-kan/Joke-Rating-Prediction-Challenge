@@ -39,3 +39,9 @@ data_describtion.txt contains information about data.
 
 * grid_search_corr.py:
   has been used to find optimal params for correction (XGB) model.
+  
+  
+=======================================================================================================================
+Resources:
+https://www.coursera.org/learn/machine-learning
+Tony Tonev [ https://github.com/tonytonev ]
